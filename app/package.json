@@ -1,0 +1,22 @@
+{
+  "name": "brain-challenge",
+  "version": "0.0.0",
+  "description": "Application proposant une liste de questions avec leur réponse.",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron ."
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/cegepmatane/devoir-app-serverless-2022-ClementDrn.git"
+  },
+  "author": "Clément Darne, Khalissa Rhoulam",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/cegepmatane/devoir-app-serverless-2022-ClementDrn/issues"
+  },
+  "homepage": "https://github.com/cegepmatane/devoir-app-serverless-2022-ClementDrn#readme",
+  "devDependencies": {
+    "electron": "^17.0.0"
+  }
+}

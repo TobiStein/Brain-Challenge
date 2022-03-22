@@ -1,0 +1,296 @@
+/* General */
+
+html {
+  height: 100%;
+}
+
+body {
+  height: 100%;
+  margin: 0;
+  font-family: system-ui, -apple-system, 'Helvetica Neue', BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, Helvetica, 'Open Sans', sans-serif;
+  background-color: rgb(245, 245, 245);
+}
+
+.page {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  margin-top: 0;
+}
+
+h1 {
+  margin: 0 0 1rem;
+}
+
+a {
+  color: inherit;
+  text-decoration: inherit;
+}
+
+/* Common */
+
+.back-arrow, .edit-pencil {
+  position: absolute;
+  top: 10px;
+  width: 1.5rem;
+  height: 1.5rem;
+}
+
+.back-arrow {
+  left: 10px;
+}
+
+.edit-pencil {
+  right: 10px;
+}
+
+.back-arrow > img, .edit-pencil > img {
+  width: 1.5rem;
+  height: 1.5rem;
+}
+
+
+.question-tags {
+  display: flex;
+  justify-content: right;
+  flex: 1;
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+
+.question-tags > li {
+  font-size: .8rem;
+
+  margin: .25rem;
+  padding: 0.2rem;
+  
+  background-color: #bbb;
+  border-radius: 3px;
+}
+
+/* Loading View */
+
+#loading {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+#loading > div {
+  padding-bottom: 10%;
+}
+
+.lead {
+  position: relative;
+  top: -1rem;
+  font-weight: 300;
+}
+
+/* Question List View */
+
+.header {
+  height: 3rem;
+  position: static;
+  top: 0;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  background-color: #fff;
+  box-shadow: 0 0 6px rgba(0, 0, 0, .125);
+}
+
+.header > h1 {
+  flex: 2;
+  text-align: center;
+  align-items: center;
+  margin: 0;
+}
+
+.header > .add-button-area {
+  flex: 1;
+  padding-right: 1rem;
+  display: flex;
+  justify-content: right;
+  align-items: center;
+}
+
+.add-button {
+  height: 2rem;
+  padding: 0 1rem;
+  align-items: center;
+  display: flex;
+  
+  border: 1px solid black;
+  border-radius: 2px; 
+  background-color: #eee; 
+}
+
+.add-button:hover {
+  background-color: #ccc;
+}
+
+#liste-question {
+  list-style-type: none;
+  padding: 0;
+}
+
+#liste-question > li {
+  min-height: 2rem;
+  margin: .25rem 1rem;
+
+  background-color: #fff;
+  border: 1px solid black;
+  border-radius: 3px;
+  box-shadow: 0 0 6px rgba(0, 0, 0, .125);
+}
+
+#liste-question > li > a {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 .75rem;
+}
+
+.question-title {
+  flex: 1;
+  font-size: 1.1rem;
+}
+
+/* Question View */
+
+#question-title {
+  text-align: center;
+  font-weight: 300;
+  margin-right: 3rem;
+  margin-left: 3rem;
+}
+
+#question-statement {
+  text-align: center;
+  font-weight: 600;
+  margin-right: 1rem;
+  margin-left: 1rem;
+}
+
+.row {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+#view-question-page > .row {
+  width: 100%;
+  max-width: 70rem;
+  margin: 0 auto;
+}
+
+#question-difficulty {
+  flex: 1;
+  margin: 0 1rem;
+  text-align: left;
+}
+
+#question-tags {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+}
+
+#question-time {
+  flex: 1;
+  margin: 0 1rem; 
+  text-align: right;
+}
+
+#question-answer, #question-hint {
+  border: 1px solid black;
+  border-radius: 4px;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 80%;
+  max-width: 30rem;
+  min-height: 4rem;
+  margin: 1rem auto;
+  text-align: center;
+}
+
+#question-hint {
+  margin-top: 3rem;
+}
+
+#question-answer.hidden:hover, #question-hint.hidden:hover {
+  cursor: pointer;
+}
+
+#question-answer.hidden, #question-hint.hidden {
+  background-color: #ddd;
+}
+
+#question-answer.revealed, #question-hint.revealed {
+  background-color: #fff;
+}
+
+/* Add Question View */
+
+#add-question-page, #edit-question-page {
+  text-align: center;
+
+  width: calc(100% - 1rem);
+  max-width: 50rem;
+  margin: 0 auto;
+}
+
+fieldset > .row {
+  justify-content: center;
+  align-items: center;
+  margin: .5rem 0 1.5rem
+}
+
+input#question-title {
+  margin: 0 1rem;
+}
+
+textarea#question-statement, textarea#question-answer, textarea#question-hint, textarea#question-tags {
+  display: flex;
+  width: 80%;
+  max-width: 30rem;
+  height: 4rem;
+  margin: 0.2rem auto 1rem;
+} 
+
+fieldset {
+  margin-bottom: 1rem;
+}
+
+input#question-difficulty, input#question-time {
+  flex: 0;
+  margin: 0 1rem;
+}
+
+#enregistrer {
+  width: 10rem;
+  height: 2rem;
+  margin: 0 0 1rem;
+  
+  color: white;
+  font-size: 1.1rem;
+
+  background-color: rgb(44, 118, 228);
+  border: 1px solid rgb(8, 6, 80);
+  border-radius: 4px;
+
+  cursor: pointer;
+}
+
+#enregistrer:hover {
+  background-color: rgb(30, 83, 163);
+  border: 1px solid rgb(7, 6, 54);
+}

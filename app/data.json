@@ -1,0 +1,29 @@
+[
+    {
+        "id": 1,
+        "statement": "En quelle année a eu lieu la révolution française ?",
+        "answer": "1789",
+        "title": "Révolution française",
+        "tags": [
+            "Date",
+            "Histoire",
+            "France"
+        ],
+        "difficulty": 1,
+        "hint": "Fin XVIIIe siècle.",
+        "time": 10
+    },
+    {
+        "id": 2,
+        "statement": "5 * 6 / 4 + 4 - 2 / 4",
+        "answer": "11",
+        "title": "Calcul",
+        "tags": [
+            "Mathématiques",
+            "Calcul"
+        ],
+        "difficulty": 2,
+        "hint": "Propositions : (a) 11 ; (b) 2.375 ; (c) 8",
+        "time": "20"
+    }
+]

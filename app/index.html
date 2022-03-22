@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8"/>
+    <!-- https://developer.mozilla.org/en-US/docs/Web/HTTP/CSP -->
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; connect-src *"/>
+    <meta http-equiv="X-Content-Security-Policy" content="default-src 'self'; script-src 'self'; connect-src *"/>
+    <link rel="stylesheet" href="./assets/styles.css"/> 
+    <title>Brain Challenge</title>
+
+    <!-- Model scripts -->
+    <script src="./server-config.js"></script>
+    <script src="./src/Model/Question.js"></script>
+
+    <!-- Accessor scripts -->
+    <script src="./src/Accessor/QuestionDAO.js"></script>
+    
+    <!-- View scripts -->
+    <script src="./src/View/QuestionView.js"></script>
+    <script src="./src/View/QuestionListView.js"></script>
+    <script src="./src/View/AddQuestionView.js"></script>
+    <script src="./src/View/EditQuestionView.js"></script>
+
+    <!-- Controller scripts -->
+    <script src="./src/Controller/Application.js" defer></script>
+  </head>
+
+  <body>
+    <!-- LoadingView -->
+    <section id="loading" class="page">
+      <div>
+        <h1>Brain Challenge</h1>
+        <p class="lead">Chargement...</p>
+      </div>
+    </section>
+
+    <!-- QuestionListView -->
+    <script type="plain/text" id="html-vue-liste-question">
+      <div id="list-question-page" class="page">
+        <div class="header">
+          <h1>Liste des questions</h1>
+          <div class="add-button-area">
+            <a class="action add-button" href="#ajouter-question">
+              Ajouter une question
+            </a>
+          </div>
+        </div>
+        <ul id="liste-question">
+          <li>
+            <a href="#question/{Question.id}" class="liste-question-item">
+              <p class="question-title">{Question.title}</p>
+              <ul id="question-tags-{Question.id}" class="question-tags">
+                {Question.tags}
+              </ul>
+            </a>
+          </li>
+        </ul>
+      </div>
+    </script>
+
+    <!-- QuestionView -->
+    <script type="plain/text" id="html-vue-question">
+      <div id="view-question-page" class="page">
+        <h1 id="question-title"></h1>
+
+        <h2 id="question-statement"></h2>
+
+        <div class="row">
+          <p id="question-difficulty"></p>
+          <ul id="question-tags" class="question-tags"></ul>
+          <p id="question-time"></p>
+        </div>
+          
+        <div class="hidden" id="question-hint">
+          Afficher l'indice
+        </div>
+        
+        <div class="hidden" id="question-answer">
+          Afficher la réponse
+        </div>
+
+        <a href="#" class="back-arrow"><img src="./assets/arrow-left-circle.svg" alt="Retour arrière" width="25" height="25"/></a>
+        <a id="edit-button" href="#question/{Question.id}/modifier" class="edit-pencil"><img src="./assets/pencil-square.svg" alt="Modifier" width="25" height="25"/></a>
+      </div>
+    </script>
+
+    <!-- AddQuestionView -->
+    <script type="plain/text" id="html-vue-ajouter-question">
+      <div id="add-question-page" class="page">
+
+        <h1>Ajouter une question</h1>
+
+        <form id="formulaire-ajouter">
+
+          <fieldset id="main-info">
+            <legend>Informations principales</legend>
+            <div class="row">
+              <label for="question-title">Titre</label>
+              <input type="text" id="question-title"/>
+            </div>
+            <div>
+              <label for="question-statement">Question</label>
+              <textarea id="question-statement"></textarea>
+            </div>
+            <div>
+              <label for="question-answer">Réponse</label>
+              <textarea id="question-answer"></textarea>
+            </div>
+            <div>
+              <label for="question-hint">Indice</label>
+              <textarea id="question-hint" placeholder="Exemples : c'est une couleur ; (a) rouge , (b) bleu..."></textarea>
+            </div>
+          </fieldset>
+
+          <fieldset id="secondary-info">
+            <legend>Informations secondaires</legend>
+            <div>
+              <label for="question-tags">Tags</label>
+              <textarea id="question-tags" placeholder="Tags espacés par des espaces."></textarea>
+            </div>
+            <div class="row">
+              <label for="question-difficulty">Difficulté</label>
+              <input type="range" min="1" max="5" value="1" class="slider" id="question-difficulty">
+            </div>
+            <div class="row">
+              <label for="question-time">Temps imparti (secondes)</label>
+              <input type="number" min="1" max="60" value="10" class="slider" id="question-time">
+            </div>
+          </fieldset>
+
+          <input class="action" type="submit" id="enregistrer" value="Enregistrer"/>
+
+        </form>
+
+        <a href="#" class="back-arrow"><img src="./assets/arrow-left-circle.svg" alt="Retour arrière" width="25" height="25"/></a>
+      </div>
+    </script>
+
+    <!-- EditQuestionView -->
+    <script type="plain/text" id="html-vue-modifier-question">
+      <div id="edit-question-page" class="page">
+
+        <h1>Modifier une question</h1>
+
+        <form id="formulaire-modifier">
+
+          <fieldset id="main-info">
+            <legend>Informations principales</legend>
+            <div class="row">
+              <label for="question-title">Titre</label>
+              <input type="text" id="question-title" value=""/>
+            </div>
+            <div>
+              <label for="question-statement">Question</label>
+              <textarea id="question-statement"></textarea>
+            </div>
+            <div>
+              <label for="question-answer">Réponse</label>
+              <textarea id="question-answer"></textarea>
+            </div>
+            <div>
+              <label for="question-hint">Indice</label>
+              <textarea id="question-hint" placeholder="Exemples : c'est une couleur ; (a) rouge , (b) bleu..."></textarea>
+            </div>
+          </fieldset>
+
+          <fieldset id="secondary-info">
+            <legend>Informations secondaires</legend>
+            <div>
+              <label for="question-tags">Tags</label>
+              <textarea id="question-tags" placeholder="Tags espacés par des espaces."></textarea>
+            </div>
+            <div class="row">
+              <label for="question-difficulty">Difficulté</label>
+              <input type="range" value="" min="1" max="5" value="1" class="slider" id="question-difficulty">
+            </div>
+            <div class="row">
+              <label for="question-time">Temps imparti (secondes)</label>
+              <input type="number" value="" min="1" max="60" value="10" class="slider" id="question-time">
+            </div>
+          </fieldset>
+
+          <input class="action" type="submit" id="enregistrer" value="Enregistrer"/>
+
+        </form>
+
+        <a href="#question/{Question.id}" class="back-arrow"><img src="./assets/arrow-left-circle.svg" alt="Retour arrière" width="25" height="25"/></a>
+      </div>
+    </script>
+
+
+
+  </body>
+</html>
